@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+        <form action="/" method="post">
+          <input name="productName" type="text" class="ghost-input" placeholder="Search for a Product" required>
+          <input type="submit" class="ghost-button" value="Get Products">
+        </form>
+        <% if(product !== null){ %>
+          <p><%= product %></p>
+        <% } %>
+
+        <% if(error !== null){ %>
+          <p><%= error %></p>
+        <% } %>
+
+        <table>
+          <% if(productList !== null){ %>
+            <% for(var i=0; i < productList.length; i++) { %>
+              <tr>
+                <td><img src=<%= productList[i].image_url %> /></td>
+                <td>
+                  <a href='../productdetail.html?tagId=<%= productList[i].product_id %>'>
+                    <div>
+                        <%= productList[i].product_name %>
+                    </div>
+                  </a>
+                </td>
+                <td name="productID" style="display:none;"><%= productList[i].product_id %></td>
+                <td>$<%= productList[i].price %> <% if(Object.keys(productList[i].price_history).length>1){ %><del>$<%= productList[i].price_history[Object.keys(productList[i].price_history)[0]] %></del><% } %></td>
+                
+              </tr>
+            <% } %>
+          <% } %>  
+        </table>
+      </fieldset>
+    </div>
+  </body>
+</html>

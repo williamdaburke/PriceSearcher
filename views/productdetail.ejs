@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.productdetail.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+       
+        <% if(product !== null){ %>
+          <p><%= product %></p>
+        <% } %>
+
+        <% if(error !== null){ %>
+          <p><%= error %></p>
+        <% } %>
+        
+        <table>
+            <% if(productList !== null){ %>
+              <% for(var i=0; i < productList.length; i++) { %>
+              <tr>  
+                <td><img src=<%= productList[i].image_url %> /></td>
+                <td>
+                  <table>
+                    <tr>
+                      
+                      <td>
+                        <a href='../productdetail.html?tagId=<%= productList[i].product_id %>'>
+                          <div>
+                              <%= productList[i].product_name %>
+                          </div>
+                        </a>
+                      </td>
+                      <td>$<%= productList[i].price %> <% if(Object.keys(productList[i].price_history).length>1){ %><del>$<%= productList[i].price_history[Object.keys(productList[i].price_history)[0]] %></del><% } %></td>
+                    </tr>
+                    <th><%= productList[i].description %></th>
+                  </table>
+                </td>
+              </tr>  
+              <% } %>
+            <% } %>  
+          </table>
+        
+      </fieldset>
+    </div>
+  </body>
+</html>
